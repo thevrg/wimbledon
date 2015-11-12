@@ -9,7 +9,9 @@ import wimbledon.entity.player.Player;
 public abstract class Team {
     protected Player player1;
     protected Player player2;
-    public abstract Team create(Player player1, Player player2);
+
+    public Team() {
+    }
 
     public Player getPlayer1() {
         return player1;

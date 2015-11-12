@@ -14,9 +14,7 @@ import wimbledon.entity.player.Player;
  */
 public class MensDoublesTeam extends Team {
 
-    @Override
-    public Team create(Player player1, Player player2) throws IllegalArgumentException {
-        MensDoublesTeam team = new MensDoublesTeam();
+    public MensDoublesTeam(Player player1, Player player2) throws IllegalArgumentException {
         if (player1.getGender() != Gender.MALE) {
             throw new IllegalArgumentException("Player1 is not a male");
         }
@@ -25,7 +23,6 @@ public class MensDoublesTeam extends Team {
         }
         this.player1 = player1;
         this.player2 = player2;
-        return team;
     }
 
 }

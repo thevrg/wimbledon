@@ -27,4 +27,11 @@ public class Player {
         return gender;
     }
 
+    @Override
+    public String toString() {
+        return "Player{" + "name=" + name + ", gender=" + gender + '}';
+    }
+    
+    
+
 }

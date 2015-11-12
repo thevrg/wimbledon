@@ -18,5 +18,6 @@ public class MensDoublesDraw extends DoublesDraw {
     public DrawType getType() {
         return DrawType.MENS_DOUBLE;
     }
+
     
 }
