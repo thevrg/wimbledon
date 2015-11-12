@@ -5,8 +5,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.MapKey;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 import wimbledon.entity.Court;
 import wimbledon.entity.DrawType;
+import wimbledon.entity.EntityBase;
 import wimbledon.entity.Round;
 import wimbledon.entity.Umpire;
 
@@ -14,14 +23,28 @@ import wimbledon.entity.Umpire;
  *
  * @author vrg
  */
-public abstract class Draw {
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Draw extends EntityBase {
+
     private String name;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date startDate;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date endDate;
 
-    private Map<Integer,Round>rounds = new HashMap<>();
-    private List<Court>availableCourts = new ArrayList<>();
-    private List<Umpire>availableUmpires = new ArrayList<>();
+    @OneToMany(mappedBy = "draw")
+    @MapKey(name = "number")
+    private Map<Integer, Round> rounds = new HashMap<>();
+    @OneToMany
+    @JoinTable(joinColumns = @JoinColumn(name = "DRAW_ID"),
+            inverseJoinColumns = @JoinColumn(name="COURT_ID"))
+    private List<Court> availableCourts = new ArrayList<>();
+    @OneToMany
+    @JoinTable(joinColumns = @JoinColumn(name = "DRAW_ID"),
+            inverseJoinColumns = @JoinColumn(name="UMPIRE_ID"))
+    private List<Umpire> availableUmpires = new ArrayList<>();
+
     public abstract DrawType getType();
 
     public String getName() {
@@ -76,6 +99,5 @@ public abstract class Draw {
     public String toString() {
         return "Draw{" + "name=" + name + ", type=" + getType() + ", startDate=" + startDate + ", endDate=" + endDate + '}';
     }
-    
-    
+
 }

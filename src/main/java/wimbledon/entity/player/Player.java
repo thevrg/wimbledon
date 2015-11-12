@@ -1,12 +1,16 @@
 package wimbledon.entity.player;
 
+import javax.persistence.Entity;
+import wimbledon.entity.EntityBase;
 import wimbledon.entity.Gender;
 
 /**
  *
  * @author vrg
  */
-public class Player {
+@Entity
+public class Player extends EntityBase {
+
     private String name;
     private Gender gender;
 
@@ -26,7 +30,5 @@ public class Player {
     public String toString() {
         return "Player{" + "name=" + name + ", gender=" + gender + '}';
     }
-    
-    
 
 }

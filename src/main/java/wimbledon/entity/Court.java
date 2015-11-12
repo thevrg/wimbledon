@@ -1,10 +1,13 @@
 package wimbledon.entity;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author vrg
  */
-public class Court {
+@Entity
+public class Court extends EntityBase {
 
     private String name;
 

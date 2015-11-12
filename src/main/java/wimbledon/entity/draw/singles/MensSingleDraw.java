@@ -1,15 +1,17 @@
 package wimbledon.entity.draw.singles;
 
+import javax.persistence.Entity;
 import wimbledon.entity.DrawType;
 import wimbledon.entity.Gender;
-import wimbledon.entity.draw.SingleDraw;
+import wimbledon.entity.draw.SinglesDraw;
 import wimbledon.entity.player.Player;
 
 /**
  *
  * @author vrg
  */
-public class MensSingleDraw extends SingleDraw {
+@Entity
+public class MensSingleDraw extends SinglesDraw {
 
     @Override
     public void register(Player player) throws IllegalArgumentException {

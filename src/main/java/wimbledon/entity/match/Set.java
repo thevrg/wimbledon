@@ -1,10 +1,16 @@
 package wimbledon.entity.match;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import wimbledon.entity.EntityBase;
+
 /**
  *
  * @author vrg
  */
-public class Set {
+@Entity
+@Table(name = "SET_SCORES")
+public class Set extends EntityBase {
 
     private int score1;
     private int score2;

@@ -1,6 +1,6 @@
 package wimbledon.entity.draw;
 
-import wimbledon.entity.team.Team;
+import wimbledon.entity.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -16,15 +16,15 @@ import javax.persistence.Table;
  * @author vrg
  */
 @Entity
+@Table(name = "DRAW_SINGLES")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Table(name = "DRAW_DOUBLES")
-public abstract class DoublesDraw extends Draw {
+public abstract class SinglesDraw extends Draw {
     @OneToMany
-    @JoinTable(name = "DOUBLES_DRAW_TEAM",
+    @JoinTable(name = "SINGLES_DRAW_PLAYER",
             joinColumns = @JoinColumn(name = "DRAW_ID"),
-            inverseJoinColumns = @JoinColumn(name = "TEAM_ID"))
-    protected List<Team>registeredTeams = new ArrayList<>();
-    protected void register(Team team) {
-        registeredTeams.add(team);
+            inverseJoinColumns = @JoinColumn(name = "PLAYER_ID"))
+    protected List<Player>registeredPlayers = new ArrayList<>();
+    protected void register(Player player) {
+        registeredPlayers.add(player);
     }
 }

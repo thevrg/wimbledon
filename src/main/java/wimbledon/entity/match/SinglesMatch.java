@@ -1,12 +1,18 @@
 package wimbledon.entity.match;
 
 import java.util.Objects;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import wimbledon.entity.player.Player;
 
 /**
  *
  * @author vrg
  */
+@Entity
+@DiscriminatorValue("S")
+@Table(name = "MATCH_SINGLES")
 public class SinglesMatch extends Match {
     private Player player1;
     private Player player2;

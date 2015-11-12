@@ -3,13 +3,23 @@ package wimbledon.entity;
 import wimbledon.entity.match.Match;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import wimbledon.entity.draw.Draw;
 
 /**
  *
  * @author vrg
  */
-public class Round {
+@Entity
+public class Round extends EntityBase {
     private int number;
+    
+    @ManyToOne
+    private Draw draw;
+    
+    @OneToMany(mappedBy = "round")
     private List<Match>matches = new ArrayList<>();
 
     public Round() {

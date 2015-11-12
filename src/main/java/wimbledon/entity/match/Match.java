@@ -3,20 +3,46 @@ package wimbledon.entity.match;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 import wimbledon.entity.Court;
+import wimbledon.entity.EntityBase;
+import wimbledon.entity.Round;
 import wimbledon.entity.Umpire;
 
 /**
  *
  * @author vrg
  */
-public abstract class Match {
+@Entity
+@Table(name = "MATCH_COMMON")
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.CHAR)
+public abstract class Match extends EntityBase {
 
+    @ManyToOne
     private Court court;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date startTime;
+    @ManyToOne
     private Umpire umpire;
     private MatchStatus status;
 
+    @ManyToOne
+    private Round round;
+
+    @OneToMany
+    @JoinTable(name = "MATCH_SET", joinColumns = @JoinColumn(name = "MATCH_ID"),
+            inverseJoinColumns = @JoinColumn(name = "SET_ID"))
     private List<Set> sets = new ArrayList<>();
 
     public Court getCourt() {

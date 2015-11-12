@@ -1,11 +1,17 @@
 package wimbledon.entity.match;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import wimbledon.entity.team.Team;
 
 /**
  *
  * @author vrg
  */
+@Entity
+@DiscriminatorValue("D")
+@Table(name = "MATCH_DOUBLES")
 public class DoublesMatch extends Match {
     private Team team1;
     private Team team2;

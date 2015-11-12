@@ -1,6 +1,8 @@
 package wimbledon.entity.team;
 
 import java.util.Objects;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import wimbledon.entity.Gender;
 import wimbledon.entity.player.Player;
 
@@ -8,7 +10,12 @@ import wimbledon.entity.player.Player;
  *
  * @author vrg
  */
+@Entity
+@DiscriminatorValue("MIX")
 public class MixedDoublesTeam extends Team {
+
+    public MixedDoublesTeam() {
+    }
 
     public MixedDoublesTeam(Player femalePlayer, Player malePlayer) throws IllegalArgumentException {
         Objects.requireNonNull(femalePlayer, "femalePlayer must not be null");

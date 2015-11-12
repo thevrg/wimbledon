@@ -1,16 +1,24 @@
 package wimbledon.entity.team;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import wimbledon.entity.EntityBase;
 import wimbledon.entity.player.Player;
 
 /**
  *
  * @author vrg
  */
-public abstract class Team {
+@Entity
+@Inheritance
+@DiscriminatorColumn(length = 3)
+public abstract class Team extends EntityBase {
+
     protected Player player1;
     protected Player player2;
 
-    public Team() {
+    protected Team() {
     }
 
     public Player getPlayer1() {
