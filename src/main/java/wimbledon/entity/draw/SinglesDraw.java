@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class SinglesDraw extends Draw {
     @OneToMany
-    @JoinTable(name = "SINGLES_DRAW_PLAYER",
+    @JoinTable(name = "DRAW_SINGLES_PLAYER",
             joinColumns = @JoinColumn(name = "DRAW_ID"),
             inverseJoinColumns = @JoinColumn(name = "PLAYER_ID"))
     protected List<Player>registeredPlayers = new ArrayList<>();
