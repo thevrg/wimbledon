@@ -39,6 +39,4 @@ public class Round {
     public String toString() {
         return "Round{" + "number=" + number + ", matches=" + matches + '}';
     }
-    
-    
 }

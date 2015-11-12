@@ -1,6 +1,5 @@
 package wimbledon.entity.draw;
 
-import wimbledon.entity.player.Player;
 import wimbledon.entity.team.Team;
 import java.util.ArrayList;
 import java.util.List;
