@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -33,16 +34,16 @@ public abstract class Draw extends EntityBase {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date endDate;
 
-    @OneToMany(mappedBy = "draw")
+    @OneToMany(mappedBy = "draw", cascade = CascadeType.PERSIST)
     @MapKey(name = "number")
     private Map<Integer, Round> rounds = new HashMap<>();
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinTable(joinColumns = @JoinColumn(name = "DRAW_ID"),
-            inverseJoinColumns = @JoinColumn(name="COURT_ID"))
+            inverseJoinColumns = @JoinColumn(name = "COURT_ID"))
     private List<Court> availableCourts = new ArrayList<>();
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinTable(joinColumns = @JoinColumn(name = "DRAW_ID"),
-            inverseJoinColumns = @JoinColumn(name="UMPIRE_ID"))
+            inverseJoinColumns = @JoinColumn(name = "UMPIRE_ID"))
     private List<Umpire> availableUmpires = new ArrayList<>();
 
     public abstract DrawType getType();
@@ -85,6 +86,16 @@ public abstract class Draw extends EntityBase {
 
     public void setAvailableCourts(List<Court> availableCourts) {
         this.availableCourts = availableCourts;
+    }
+
+    public Draw addCourt(Court court) {
+        availableCourts.add(court);
+        return this;
+    }
+
+    public Draw addUpire(Umpire umpire) {
+        availableUmpires.add(umpire);
+        return this;
     }
 
     public List<Umpire> getAvailableUmpires() {

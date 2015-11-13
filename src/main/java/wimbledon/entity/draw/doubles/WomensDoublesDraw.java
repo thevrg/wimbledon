@@ -12,7 +12,7 @@ import wimbledon.entity.team.WomensDoublesTeam;
 @Entity
 public class WomensDoublesDraw extends DoublesDraw {
 
-    protected WomensDoublesDraw register(WomensDoublesTeam team) {
+    public WomensDoublesDraw register(WomensDoublesTeam team) {
         super.register(team);
         return this;
     }
