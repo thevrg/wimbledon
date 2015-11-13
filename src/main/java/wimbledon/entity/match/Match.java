@@ -3,6 +3,7 @@ package wimbledon.entity.match;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -29,18 +30,19 @@ import wimbledon.entity.Umpire;
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.CHAR)
 public abstract class Match extends EntityBase {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Court court;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date startTime;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Umpire umpire;
+
     private MatchStatus status;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Round round;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "MATCH_SET", joinColumns = @JoinColumn(name = "MATCH_ID"),
             inverseJoinColumns = @JoinColumn(name = "SET_ID"))
     private List<Set> sets = new ArrayList<>();

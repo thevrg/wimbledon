@@ -1,7 +1,9 @@
 package wimbledon.entity.match;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import wimbledon.entity.team.Team;
 
@@ -13,7 +15,9 @@ import wimbledon.entity.team.Team;
 @DiscriminatorValue("D")
 @Table(name = "MATCH_DOUBLES")
 public class DoublesMatch extends Match {
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Team team1;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Team team2;
 
     public DoublesMatch() {

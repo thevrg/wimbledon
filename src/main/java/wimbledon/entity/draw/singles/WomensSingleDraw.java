@@ -14,11 +14,12 @@ import wimbledon.entity.player.Player;
 public class WomensSingleDraw extends SinglesDraw {
 
     @Override
-    public void register(Player player) throws IllegalArgumentException {
+    public WomensSingleDraw register(Player player) throws IllegalArgumentException {
         if (player.getGender() != Gender.FEMALE) {
             throw new IllegalArgumentException("Just female players allowed in this type of draw.");
         }
         super.register(player);
+        return this;
     }
 
     @Override

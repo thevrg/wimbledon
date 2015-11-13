@@ -2,7 +2,6 @@ package wimbledon.entity.team;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import wimbledon.entity.Gender;
 import wimbledon.entity.player.Player;
 

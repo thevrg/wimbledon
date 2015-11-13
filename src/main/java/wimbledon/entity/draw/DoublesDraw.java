@@ -3,6 +3,7 @@ package wimbledon.entity.draw;
 import wimbledon.entity.team.Team;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -19,12 +20,13 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "DRAW_DOUBLES")
 public abstract class DoublesDraw extends Draw {
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "DRAW_DOUBLES_TEAM",
             joinColumns = @JoinColumn(name = "DRAW_ID"),
             inverseJoinColumns = @JoinColumn(name = "TEAM_ID"))
     protected List<Team>registeredTeams = new ArrayList<>();
-    protected void register(Team team) {
+    protected DoublesDraw register(Team team) {
         registeredTeams.add(team);
+        return this;
     }
 }

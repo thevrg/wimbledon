@@ -12,8 +12,9 @@ import wimbledon.entity.team.WomensDoublesTeam;
 @Entity
 public class WomensDoublesDraw extends DoublesDraw {
 
-    protected void register(WomensDoublesTeam team) {
+    protected WomensDoublesDraw register(WomensDoublesTeam team) {
         super.register(team);
+        return this;
     }
 
     @Override

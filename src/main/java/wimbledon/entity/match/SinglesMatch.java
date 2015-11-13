@@ -1,8 +1,10 @@
 package wimbledon.entity.match;
 
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import wimbledon.entity.player.Player;
 
@@ -14,7 +16,9 @@ import wimbledon.entity.player.Player;
 @DiscriminatorValue("S")
 @Table(name = "MATCH_SINGLES")
 public class SinglesMatch extends Match {
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Player player1;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Player player2;
 
     public SinglesMatch() {
