@@ -76,8 +76,10 @@ public abstract class Draw extends EntityBase {
         return rounds.get(number);
     }
 
-    public void replaceRound(Round round) {
+    public Draw replaceRound(Round round) {
         this.rounds.put(round.getNumber(), round);
+        round.setDraw(this);
+        return this;
     }
 
     public List<Court> getAvailableCourts() {

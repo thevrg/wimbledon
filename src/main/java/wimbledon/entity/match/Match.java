@@ -47,6 +47,14 @@ public abstract class Match extends EntityBase {
             inverseJoinColumns = @JoinColumn(name = "SET_ID"))
     private List<Set> sets = new ArrayList<>();
 
+    public Round getRound() {
+        return round;
+    }
+
+    public void setRound(Round round) {
+        this.round = round;
+    }
+
     public Court getCourt() {
         return court;
     }
@@ -81,6 +89,11 @@ public abstract class Match extends EntityBase {
 
     public List<Set> getSets() {
         return sets;
+    }
+    
+    public Match addSet(Set set) {
+        sets.add(set);
+        return this;
     }
 
     public String getScore() {

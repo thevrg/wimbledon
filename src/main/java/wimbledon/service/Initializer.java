@@ -9,12 +9,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import wimbledon.entity.Court;
 import wimbledon.entity.Gender;
+import wimbledon.entity.Round;
 import wimbledon.entity.Umpire;
 import wimbledon.entity.draw.doubles.MensDoublesDraw;
 import wimbledon.entity.draw.doubles.MixedDoublesDraw;
 import wimbledon.entity.draw.doubles.WomensDoublesDraw;
 import wimbledon.entity.draw.singles.MensSingleDraw;
 import wimbledon.entity.draw.singles.WomensSingleDraw;
+import wimbledon.entity.match.Match;
+import wimbledon.entity.match.SinglesMatch;
 import wimbledon.entity.player.Player;
 import wimbledon.entity.team.MensDoublesTeam;
 import wimbledon.entity.team.MixedDoublesTeam;
@@ -85,6 +88,13 @@ public class Initializer {
         wsDraw.register(aliz).register(timea).register(bea).register(ildiko)
                 .addCourt(kekPalya).addCourt(sargaPalya)
                 .addUpire(biroJanos);
+        
+        wsDraw.replaceRound(new Round(1)).replaceRound(new Round(2));
+        wsDraw.getRound(1)
+                .addMatch(new SinglesMatch(aliz, bea))
+                .addMatch(new SinglesMatch(timea, ildiko));
+        wsDraw.getRound(2)
+                .addMatch(new SinglesMatch(aliz,ildiko));
                 
         em.persist(mdDraw);
         em.persist(wdDraw);
