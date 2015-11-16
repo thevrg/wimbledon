@@ -56,6 +56,7 @@ public class Round extends EntityBase {
     
     public Round addMatch(Match match) {
         matches.add(match);
+        match.setRound(this);
         return this;
     }
 

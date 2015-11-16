@@ -37,7 +37,7 @@ public abstract class Match extends EntityBase {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Umpire umpire;
 
-    private MatchStatus status;
+    private MatchStatus status = MatchStatus.NOT_PLAYED_YET;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Round round;

@@ -1,5 +1,6 @@
 package wimbledon.entity.player;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import wimbledon.entity.EntityBase;
 import wimbledon.entity.Gender;
@@ -12,6 +13,7 @@ import wimbledon.entity.Gender;
 public class Player extends EntityBase {
 
     private String name;
+    @Column(columnDefinition = "char(1)")
     private Gender gender;
 
     public Player() {
