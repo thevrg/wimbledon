@@ -1,7 +1,7 @@
 package wimbledon.entity.draw;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,10 +29,10 @@ import wimbledon.entity.Umpire;
 public abstract class Draw extends EntityBase {
 
     private String name;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date startDate;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date endDate;
+//    @Temporal(javax.persistence.TemporalType.DATE)
+    private LocalDate startDate;
+//    @Temporal(javax.persistence.TemporalType.DATE)
+    private LocalDate endDate;
 
     @OneToMany(mappedBy = "draw", cascade = CascadeType.PERSIST)
     @MapKey(name = "number")
@@ -56,19 +56,19 @@ public abstract class Draw extends EntityBase {
         this.name = name;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

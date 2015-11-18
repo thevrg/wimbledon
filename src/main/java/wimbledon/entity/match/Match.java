@@ -1,7 +1,7 @@
 package wimbledon.entity.match;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
@@ -14,7 +14,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 import wimbledon.entity.Court;
 import wimbledon.entity.EntityBase;
 import wimbledon.entity.Round;
@@ -32,8 +31,7 @@ public abstract class Match extends EntityBase {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Court court;
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date startTime;
+    private LocalDateTime startTime;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Umpire umpire;
 
@@ -63,11 +61,11 @@ public abstract class Match extends EntityBase {
         this.court = court;
     }
 
-    public Date getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 

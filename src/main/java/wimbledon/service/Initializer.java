@@ -1,6 +1,7 @@
 package wimbledon.service;
 
 import com.mysema.query.jpa.impl.JPAQueryFactory;
+import java.time.LocalDate;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Asynchronous;
@@ -124,6 +125,8 @@ public class Initializer {
         wsDraw.register(aliz).register(timea).register(bea).register(ildiko)
                 .addCourt(kekPalya).addCourt(sargaPalya)
                 .addUpire(biroJanos);
+        wsDraw.setStartDate(LocalDate.now().plusWeeks(5));
+        wsDraw.setEndDate(LocalDate.now().plusWeeks(5).plusDays(10));
 
         wsDraw.replaceRound(new Round(1)).replaceRound(new Round(2));
         wsDraw.getRound(1)

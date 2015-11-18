@@ -18,6 +18,10 @@ public class Court extends EntityBase {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+    
     @Override
     public String toString() {
         return "Court{" + "name=" + name + '}';
